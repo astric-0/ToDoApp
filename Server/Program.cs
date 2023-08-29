@@ -3,6 +3,7 @@ using Server.SchedulerConfig;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+builder.Configuration.AddJsonFile("secret.json");
 
 _ = builder.Configuration.GetConnectionString("ToDoConnection") 
 ?? throw new Exception("Connection String is null");
