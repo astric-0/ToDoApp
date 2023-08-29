@@ -5,6 +5,8 @@
 
 # User-specific files
 secret.json
+.vs
+.vscode
 *.rsuser
 *.suo
 *.user
