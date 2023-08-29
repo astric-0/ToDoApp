@@ -1,0 +1,82 @@
+<div class="container-fluid">
+
+    <div class="row" id="tasksRow">        
+    
+        <div class="col-md-4 my-3">
+            <div class="row text-center h-100 justify-content-center" data-bs-toggle="modal" data-bs-target="#addTaskModal" onclick="resetModalFields()">
+                <div class="col-4 text-center my-auto">
+                    <div class="card shadow card-block justify-content-center rounded-3 border-primary p-0">
+                        <div class="card-body p-0">
+                            <button class="btn h-100 w-100 btn-lg">
+                                <i class="text-primary fa-solid fa-add fa-2x"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+        </div>
+
+        <div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title text-primary">Add Task</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group my-2">
+                            <label class="text-primary">Task name*</label>
+                            <input name="taskName" class="form-control" oninput="handleTaskName();" placeholder="this is required" required/>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label class="text-primary">Task detail</label>
+                            <textarea name="taskDetails" class="form-control" placeholder="anything to remember by?"></textarea>                                
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label class="text-primary">Deadline</label>
+                            <input name="deadline" type="date" class="form-control"/>
+                        </div>
+
+                        <div class="mt-3">
+                            <label class="text-primary">Task Type</label>                            
+                            <div class="btn-group w-100 mt-1" role="group">
+                                <button class="btn btn-outline-primary addTaskBtnGroup active" id="btnHome" onclick="handleChooseTaskType ('Home')" value="home"><i class="fa-solid fa-house"></i> Home</button>
+                                <button class="btn btn-outline-primary addTaskBtnGroup" id="btnOffice" onclick="handleChooseTaskType ('Office')" value="office"><i class="fa-solid fa-briefcase"></i> Office</button>
+                                <button class="btn btn-outline-primary addTaskBtnGroup" id="btnMarket" onclick="handleChooseTaskType ('Market')" value="market"><i class="fa-solid fa-shop"></i> Market</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label class="text-primary">Task Importance</label>
+                            <input name="importance" type="range" class="form-range" min="1" max="3" step="1"  onchange="handleTaskImportance()" />
+                            <label class="text-primary text-center fw-bold" id="taskImportanceLabel">Medium</label>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer border-0">                   
+                        <button type="button" class="mx-auto btn btn-primary" id="submitBtn" onclick="handleAddTask()" data-bs-dismiss="modal">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+
+<script>
+
+    function handleTaskName() {
+        const taskNameValue = $("input[name='taskName']").val();
+        
+        console.log(taskNameValue);
+
+        if (taskNameValue.trim() == '')
+            $("#submitBtn").prop("disabled", true);
+        else
+            $("#submitBtn").prop("disabled", false);
+    }
+</script>
